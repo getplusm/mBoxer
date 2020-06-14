@@ -357,9 +357,9 @@ wonItems:
 # It for localization
 mfortune:
   help:
-    - '§emFortune\n'
-    - '§creload §8-§f Reload the config, menu & block location\n'
-    - '§copen §8-§f open the menu\n'
-    - '§caddKey [player] [amount]§8-§f Give key for player\n'
-    - '§cremoveKey [player] [amount]§8-§f Removed player keys\n'
+    - '§emFortune'
+    - '§creload §8-§f Reload the config, menu & block location'
+    - '§copen §8-§f open the menu'
+    - '§caddKey [player] [amount]§8-§f Give key for player'
+    - '§cremoveKey [player] [amount]§8-§f Removed player keys'
     
