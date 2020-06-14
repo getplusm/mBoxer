@@ -1,0 +1,339 @@
+# Публичный плагин на Кейсы
+# от разработчика, Кирилл "plusm" Плазмов
+# vk.com/minedevs (паблик) vk.com/ru.milow (страница)
+
+# Баги и предложения писать сюда: https://github.com/getplusm/mFortune/issues
+
+version: alpha-2 # Не изменять.
+
+settings:
+  # На сколько бустить Ваши проигрышные слоты
+  # Чтобы лучше понять как это работает, поиграйте с этим
+  # Сколько бы Вы не поставили, плагин оставит 1 выигрышный слот
+  multiply: 6
+  # Буст донат меню
+  donateMP: 3
+  
+# MySQL найстройки.
+MySQL:
+  # Если false, то плагин будет использовать локальную базу
+  enabled: false
+  user: 'root'
+  password: 'password'
+  host: 'localhost'
+  base: 'network'
+
+# Case настройки
+Boxer:
+  # Когда false, плагин будет использоваться только по команде
+  enable: true
+  # Локация сундука (world;x;y;z)
+  location: lobby;-268.500;67;140.500
+  # Блок для взаимодействия
+  type: ENDER_PORTAL_FRAME
+  animation:
+    # Когда true, plugin will use simple win animation
+    enabled: true
+    # Game Slot type
+    applex3:
+      # Тип материала
+      type: head:921127d22675c5c769a0c08b572018d299c83046f8e1f943ed9d51be03b07
+      # Цвет партикла (RGB)
+      RGB: 33,207,147
+      # Сообщение у анимации
+      message: '&eТы победитель!'
+    applex5:
+      type: head:421cab4095e71bd925cf464990e18e43adb725db7cc175fd9d1dec820914b3de
+      RGB: 33,207,147
+      message: '&eТы победитель!'
+    donate:
+      # Вы можете использовать вместо материала group (example: group)
+      # Оно будет заменяться на голову группы
+      type: group
+      RGB: 33,207,147
+      message: '&eТы победитель!'
+  # Настройки голограммы
+  holo:
+    - '&bСундук Фортуны'
+    - '&e&lПКМ'
+
+# Language settings
+Language:
+  # Глобальный префикс плагина
+  # Если хотите добавить префикс, то просто добавьте в сообщение - $p
+  prefix: '&9mBoxer &8>'
+  slots:
+    # Когда true, плагин будет использовать JSON сообщения
+    json:
+      enabled: true
+      # Message over global message
+      message: 'Нажмите, для телепортации'
+      # Команда Когда игрок кликает (Если не нужно, оставьте пустым)
+      command: 'warp case'
+    # Глобальное сообщение
+    # %s - Игрок (первое изменение)
+    # %s - Название слота (второе изменение)
+    message: '$p &fИгрок %s &fпобедил в слоте &a%s&f!'
+  donat:
+    json:
+      enabled: false
+      message: 'Нажмите, для телепортации'
+      command: 'warp case'
+    # %s - Игрок (первое изменение)
+    # %s - Группа (второе изменение)
+    message: '$p &fИгрок %s &fвыбил донат %s &fиз &bДонат Кейса'
+    
+  # Когда у игрока не хватает денег
+  # Это сообщение будет добавлено
+  noMoney: '&c&l-&c недостаточно денег!'
+  # Когда хватает
+  clickToPlay: '&eНажмите, чтобы сыграть'
+  # Когда у игрока нет ключей
+  # это сообщение будет добавлено
+  donateNotKey: '&c&l- &cУ Вас нет ключей!'
+  # Когда have
+  donateHaveKey: '&7▪ &fУ Вас &e%s&f ключей'
+  # Когда игрок проиграл
+  # сообщение будет добавлено на все предметы
+  losed: '&cПРОИГРЫШ!'
+  
+  # Название слотов
+  applex3: '&aЯблочная Фортуна &cx3'
+  applex5: '&aЯблочная Фортуна &cx5'
+  donate: '&bДонат Фортуна'
+  
+# Настройки предметов
+Items:
+  # Предмет для перехода обратно в меню
+  back:
+    name: '&aОбратно в меню'
+    # Текстура головы.
+    # Если Вы хотите, то можно использовать Material
+    # просто измените как на примере, type: BONE
+    type: 'head:8b4b8f323a14776dd851f17003753ec4e805b9b3da31e254b4d22ccfa5eff16a'
+
+  # Активный предмет
+  game:
+    name: '&eКЛИКАЙ'
+    
+  winItems:
+    name: '&0'
+    type: STAINED_GLASS_PANE
+    # Цветовой код (1.12.2 или ниже)
+    dura: 14
+    
+  # Предмет под активным предметом
+  under:
+    name: '&7⇡⇡⇡'
+    # Материал
+    type: STAINED_GLASS_PANE
+    # Цветовой код (1.12.2 или ниже)
+    dura: 5
+  # Предмет над активным предметом
+  clicked:
+    name: '&7⇣⇣⇣'
+    type: LADDER
+  # BackGround item
+  backGround: 
+    # Материал
+    type: STAINED_GLASS_PANE
+    name: '&0'
+    # Цветовой код (1.12.2 или ниже)
+    dura: 7
+    
+# Менюшки    
+Guis:
+  applex3:
+    # Название игрового меню
+    title: '&8Яблочная Фортуна x3'
+  applex5:
+    # Название игрового меню
+    title: '&8Яблочная Фортуна x5'
+  main:
+    title: '&8Выберите слот'
+    # Размер основного меню
+    size: 3
+    items: # Доступные: APPLEX3, APPLEX5, DONATE (но он отдельно)
+      APPLEX3:
+        # Цена открытия
+        price: 150
+        # X,Y либо целое число
+        slot: '3,2'
+        name: '&dЯблочная фортуна x3'
+        type: APPLE
+        amount: 3
+        lore:
+          - '&7▪ &fЯблочная фортуна из 3-х слотов'
+          - '&7▪ &fСтоимость: &c%s' # Заменяет %s на цену
+      APPLEX5:
+        # Цена открытия
+        price: 300
+        slot: '7,2'
+        name: '&dЯблочная фортуна x5'
+        type: APPLE
+        amount: 5
+        lore:
+          - '&7▪ &fЯблочная фортуна из 5-ти слотов'
+          - '&7▪ &fСтоимость: &c%s' # Заменяет %s на цену
+      DONATE: # Донатерские кейсы
+        title: '&8Выберите донат'
+        gameTitle: '&8Донатерская Фортуна'
+        slot: '5,2'
+        backSlot: '5,2' # Предмет для перехода обратно
+        size: 3
+        name: '&dДонатерская фортуна'
+        lore:
+          - '&7▪ &fФортуна на донат статус'
+          - '&7▪ &fЕсли ты пройдешь все слоты'
+          - '&7▪ &fто сможешь забрать свой донат!'
+        type: ENDER_CHEST
+        items:
+        # Название группы. ВАЖНО! Если Вы укажите не верное название группы, то плагин будет выдавать ошибку!!
+          mvp:
+            slot: '3,2'
+            name: '&eИЗИ Донат' # Название в меню выбора
+            type: 'head:ef3a1265c6a0a796adc76e0734d688997feba907bdb3d708c8733ecbac1af678' # Предмет в меню
+            prefix: '&bMVP' # Название группы в меню
+            command: 'pex user %s set group mvp' # Команда для выдачи доната
+            gameLore: # Описание в игровом меню
+              - '&7Дойди до конца,'
+              - '&7чтобы получить донат!'
+            lore: # Описание в меню выбора
+              - '&7▪ &fИспытай Удачу!'
+              - '&7▪ &fПройди все ступени'
+              - '&7▪ &fи получи %s&f!' # Заменяет %s на prefix
+          vip:
+            slot: '7,2'
+            name: '&eИЗИ Донат'
+            prefix: '&aVIP'
+            command: 'pex user %s set group vip' # Команда для выдачи доната
+            type: 'head:ee7ec179a84b0799a25008e22a4d1bf0087fd99f6163fb80eea93ce20ea8cc83'
+            gameLore:
+              - '&7Дойди до конца,'
+              - '&7чтобы получить донат!'
+            lore:
+              - '&7▪ &fИспытай Удачу!'
+              - '&7▪ &fПройди все ступени'
+              - '&7▪ &fи получи %s&f!'
+          
+          
+# Настройки победных предметов (снизу вверх)
+wonItems:
+  command:
+    # Когда true, плагин будет выполнять команды
+    enabled: true
+    # Чтобы команда была от игрока, вставьте в начале $player$ или $console$
+    # Плагин будте заменять %s на имя игрока
+    # Максимально и минимально можно добавить до 6 команд!
+    
+    # Если Вам не требуется 6 команд, добавьте пустые строчки, чтобы плагин не выдавал ошибок
+    # В следующем обновлении я это поправлю, спасибо <3
+    commands:
+      - '$console$/say &eПривет, %s&e!'
+      - '$player$/balance'
+      - ''
+      - ''
+      - ''
+      - ''
+  applex3:
+    # Когда false, плагин не будет выдавать предметы
+    enabled: false
+    first:
+      # Игровая награда
+      type: DIAMOND
+      # Название предмета
+      name: 'bad item'
+      lore: []
+      # Зачарование : уровень (без пробела)
+      # Список чаров тут:  https://hub.spigotmc.org/javadocs/spigot/org/bukkit/enchantments/Enchantment.html
+      ench:
+        - 'LUCK:1'
+        - 'DIG_SPEED:1'
+      # Кол-во предмета (64макс)
+      ammount: 1
+    second:
+      type: DIAMOND
+      name: ''
+      lore: []
+      ench: ''
+      ammount: 1
+    third:
+      type: DIAMOND
+      name: ''
+      lore: []
+      ench: ''
+      ammount: 1
+    fourth:
+      type: DIAMOND
+      name: ''
+      lore: []
+      ench: ''
+      ammount: 1
+    fifth:
+      type: DIAMOND
+      name: ''
+      lore: []
+      ench: ''
+      ammount: 1
+    sixth:
+      type: DIAMOND
+      name: ''
+      lore: []
+      ench: ''
+      ammount: 1
+  applex5:
+    enabled: false
+    first:
+      # Игровая награда
+      type: DIAMOND
+      # Название предмета
+      name: 'bad item'
+      lore: []
+      # Зачарование : уровень (без пробела)
+      # Список чаров тут:  https://hub.spigotmc.org/javadocs/spigot/org/bukkit/enchantments/Enchantment.html
+      ench:
+        - 'LUCK:1'
+        - 'DIG_SPEED:1'
+      # Кол-во предмета (64макс)
+      ammount: 1
+    second:
+      type: DIAMOND
+      name: ''
+      lore: []
+      ench: ''
+      ammount: 1
+    third:
+      type: DIAMOND
+      name: ''
+      lore: []
+      ench: ''
+      ammount: 1
+    fourth:
+      type: DIAMOND
+      name: ''
+      lore: []
+      ench: ''
+      ammount: 1
+    fifth:
+      type: DIAMOND
+      name: ''
+      lore: []
+      ench: ''
+      ammount: 1
+    sixth:
+      type: DIAMOND
+      name: ''
+      lore: []
+      ench: ''
+      ammount: 1
+      
+# MISC
+# Это для локализации
+mfortune:
+  help:
+    - '§emFortune\n'
+    - '§creload §8-§f Перезагрузка кфг, меню и локации блока\n'
+    - '§copen §8-§f Открыть меню\n'
+    - '§caddKey [ник] [кол-во]§8-§f Выдать игроку ключи\n'
+    - '§cremoveKey [ник] [кол-во]§8-§f Забрать у игрока ключи\n'
+    

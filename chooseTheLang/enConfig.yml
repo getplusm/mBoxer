@@ -1,0 +1,365 @@
+# public plugin for Cases
+# developer: Kirill "plusm" Plazmov
+# vk.com/minedevs (VK group) vk.com/ru.milow (VK page)
+
+# Bug report: https://github.com/getplusm/mFortune/issues
+
+version: alpha-1 # Do not change this.
+
+settings:
+  # How much boost your lost slots.
+  # The best way to understand this is to play around with it
+  # One slot will always be victorious
+  multiply: 6
+  # the same only for the menu
+  donateMP: 3
+  
+# MySQL settings
+MySQL:
+  # When false, the plugin will used local DB
+  enabled: false
+  user: 'root'
+  password: 'password'
+  host: 'localhost'
+  base: 'network'
+
+# Case settings when isMenu = false
+Boxer:
+  # When false, the plugin will used command only
+  enable: true
+  # Location on your case (world;x;y;z)
+  location: lobby;-268.500;67;140.500
+  # Block for interact
+  type: ENDER_PORTAL_FRAME
+  animation:
+    # When true, plugin will use simple win animation
+    enabled: true
+    # Game Slot type
+    applex3:
+      # Material type
+      type: head:921127d22675c5c769a0c08b572018d299c83046f8e1f943ed9d51be03b07
+      # Particle Color (RGB)
+      RGB: 33,207,147
+      # Hologram message
+      message: '&eYou are WINNER'
+    applex5:
+      type: head:421cab4095e71bd925cf464990e18e43adb725db7cc175fd9d1dec820914b3de
+      RGB: 33,207,147
+      message: '&eYou are WINNER'
+    donate:
+      # You can use group head (example: group)
+      type: group
+      RGB: 33,207,147
+      message: '&eYou are WINNER'
+  # Hologram lines
+  holo:
+    - '&bCase of fortune'
+    - '&e&lRBM'
+
+# Language settings
+Language:
+  # Global plugin prefix
+  # if u want use, add $p to your message
+  prefix: '&9mBoxer &8>'
+  slots:
+    # When true, the plugin will used JSON message
+    json:
+      # When true, the plugin will used JSON message
+      enabled: true
+      # Message over global message
+      message: 'Click to teleport'
+      # Command when player click (empty if not required)
+      command: 'warp case'
+    # Global message
+    # %s - player (first change)
+    # %s - slot name (second change)
+    message: '$p &fPlayer %s &fwon on: &a%s&f slots!'
+  donat:
+    json:
+      # When true, the plugin will used JSON message
+      enabled: false
+      # Message over global message
+      message: 'Click to teleport'
+      # Command when player click (empty if not required)
+      command: 'warp case'
+    # %s - Player (first change)
+    # %s - Group (second change)
+    message: '$p &fPlayer %s &fget won the %s &fgroup in Donate Case'
+    
+  # When player not have money for play
+  # this message be added
+  noMoney: '&c&l-&c Not enough money!'
+  # When have money for play
+  clickToPlay: '&eClick to play'
+  # When player not have key
+  # this message be added
+  donateNotKey: '&c&l- &cYou have no keys'
+  # When have
+  donateHaveKey: '&7▪ &fYou have &e%s&f key'
+  # When player losed
+  # this message be added to all items
+  losed: '&cLOSED!'
+  
+  # Names of game types
+  applex3: '&aApple Fortune &cx3'
+  applex5: '&aApple Fortune &cx5'
+  donate: '&bDonate Fortune'
+  
+# Items settings
+Items:
+  # Back to menu item
+  back:
+    name: '&aBack to menu'
+    # Head texture
+    # if u want to use Material
+    # replace to material. (exaple: type: BONE)
+    type: 'head:8b4b8f323a14776dd851f17003753ec4e805b9b3da31e254b4d22ccfa5eff16a'
+
+  # Active game slot
+  game:
+    name: '&eCLICK'
+    
+  winItems:
+    name: '&0'
+    type: STAINED_GLASS_PANE
+    # Color code (1.12.2 or under only)
+    dura: 14
+    
+  # Items on under active item
+  under:
+    name: '&7⇡⇡⇡'
+    # Material
+    type: STAINED_GLASS_PANE
+    # Color code (1.12.2 or under only)
+    dura: 5
+  # Items on over active item
+  clicked:
+    name: '&7⇣⇣⇣'
+    type: LADDER
+  # BackGround item
+  backGround: 
+    # Material
+    type: STAINED_GLASS_PANE
+    name: '&0'
+    # Color code (1.12.2 or under only)
+    dura: 7
+    
+# Menu settings  
+Guis:
+  applex3:
+    # Title on game menu
+    title: '&8Apple Fortune x3'
+  applex5:
+    title: '&8Apple Fortune x5'
+  main:
+    # Title on main menu
+    title: '&8Choose the Slots'
+    # Size main menu
+    size: 3
+    # Types you can use: APPLEX3, APPLEX5, DONATE (но он отдельно)
+    # APPLEX3, APPLEX5, DONATE
+    items:
+      APPLEX3:
+        # Open price
+        price: 150
+        # X,Y or integer slot
+        slot: '3,2'
+        # Item name on menu
+        name: '&dApple Fortune x3'
+        # Material type on menu
+        type: APPLE
+        # Item amount
+        amount: 3
+        # Item lore
+        # Automatic change %s to open price
+        lore:
+          - '&7▪ &fApple Fortune on x3 slots'
+          - '&7▪ &fPrice: &c%s'
+      APPLEX5:
+        price: 300
+        slot: '7,2'
+        name: '&dApple Fortune x5'
+        type: APPLE
+        amount: 5
+        lore:
+          - '&7▪ &fApple Fortune on x5 slot'
+          - '&7▪ &fPrice: &c%s'
+      DONATE:
+        title: '&8Choose the group'
+        gameTitle: '&8Donate Fortune'
+        slot: '5,2'
+        # Back to menu slot
+        # X,Y or integer slot
+        backSlot: '5,2'
+        # Menu size
+        size: 3
+        # Item Name on main menu
+        name: '&dDonate Fortune'
+        lore:
+          - '&7▪ &fFortune of donate status'
+          - '&7▪ &fIf you get to the end'
+          - '&7▪ &fyou get the donate!'
+        # Item type on menu
+        type: ENDER_CHEST
+        # Donate group types
+        items:
+        # IMPORTANT! Only install an existing group
+          # status name
+          mvp:
+            # X,Y slot or integer slot
+            slot: '3,2'
+            # Item name on donate menu
+            name: '&eEZ Donate'
+            # Item type on d.menu
+            type: 'head:ef3a1265c6a0a796adc76e0734d688997feba907bdb3d708c8733ecbac1af678'
+            # Group prefix
+            prefix: '&bMVP'
+            # Issue command
+            command: 'pex user %s set group mvp'
+            # Lore on game menu
+            gameLore:
+              - '&7Gonna be end'
+              - '&7to get a status!'
+            # Lore on d.menu
+            lore:
+              - '&7▪ &fTry your luck!'
+              - '&7▪ &fGo through all the steps'
+              - '&7▪ &fand get the %s&f status!'
+          vip:
+            slot: '7,2'
+            name: '&eEZ Donate'
+            prefix: '&aVIP'
+            command: 'pex user %s set group vip'
+            type: 'head:ee7ec179a84b0799a25008e22a4d1bf0087fd99f6163fb80eea93ce20ea8cc83'
+            gameLore:
+              - '&7Gonna be end'
+              - '&7to get a status!'
+            # Lore on d.menu
+            lore:
+              - '&7▪ &fTry your luck!'
+              - '&7▪ &fGo through all the steps'
+              - '&7▪ &fand get the %s&f status!'
+          
+          
+# Apple Fortune win items (top down)
+wonItems:
+  command:
+    # When true, the plugin will execute commands
+    enabled: true
+    # Player executor: $player$
+    # Console: $console$
+    # Plugin change %s to player display name
+    # Max & min of 6 cmd can be added!
+    
+    # If you do not need 6 commands, add empty lines so that the plugin does not produce errors
+    # For next update i fix it, thx <3
+    commands:
+      - '$console$/say &eHello, %s&e!'
+      - '$player$/balance'
+      - ''
+      - ''
+      - ''
+      - ''
+  applex3:
+    # When false, the plugin will not giving items
+    enabled: false
+    first:
+      # Game prize
+      type: DIAMOND
+      # Item name
+      name: 'bad item'
+      lore: []
+      # Enchantment name : level
+      # Ench list here:  https://hub.spigotmc.org/javadocs/spigot/org/bukkit/enchantments/Enchantment.html
+      ench:
+        - 'LUCK:1'
+        - 'DIG_SPEED:1'
+      # Item amount (64max)
+      ammount: 1
+    second:
+      type: DIAMOND
+      name: ''
+      lore: []
+      ench: ''
+      ammount: 1
+    third:
+      type: DIAMOND
+      name: ''
+      lore: []
+      ench: ''
+      ammount: 1
+    fourth:
+      type: DIAMOND
+      name: ''
+      lore: []
+      ench: ''
+      ammount: 1
+    fifth:
+      type: DIAMOND
+      name: ''
+      lore: []
+      ench: ''
+      ammount: 1
+    sixth:
+      type: DIAMOND
+      name: ''
+      lore: []
+      ench: ''
+      ammount: 1
+  applex5:
+    # When false, the plugin will not giving items
+    enabled: false
+    first:
+      # Game prize
+      type: DIAMOND
+      # Item name
+      name: 'bad item'
+      lore: []
+      # Enchantment name : level
+      # Ench list here:  https://hub.spigotmc.org/javadocs/spigot/org/bukkit/enchantments/Enchantment.html
+      ench:
+        - 'LUCK:1'
+        - 'DIG_SPEED:1'
+      # Item amount (64max)
+      ammount: 1
+    second:
+      type: DIAMOND
+      name: ''
+      lore: []
+      ench: ''
+      ammount: 1
+    third:
+      type: DIAMOND
+      name: ''
+      lore: []
+      ench: ''
+      ammount: 1
+    fourth:
+      type: DIAMOND
+      name: ''
+      lore: []
+      ench: ''
+      ammount: 1
+    fifth:
+      type: DIAMOND
+      name: ''
+      lore: []
+      ench: ''
+      ammount: 1
+    sixth:
+      type: DIAMOND
+      name: ''
+      lore: []
+      ench: ''
+      ammount: 1
+      
+# MISC
+# It for localization
+mfortune:
+  help:
+    - '§emFortune\n'
+    - '§creload §8-§f Reload the config, menu & block location\n'
+    - '§copen §8-§f open the menu\n'
+    - '§caddKey [player] [amount]§8-§f Give key for player\n'
+    - '§cremoveKey [player] [amount]§8-§f Removed player keys\n'
+    
